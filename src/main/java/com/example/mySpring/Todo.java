@@ -16,6 +16,7 @@ public class Todo {
     }
 
     public Todo(int id, String title, boolean status) {
+        super();
         this.id = id;
         this.title = title;
         this.status = status;

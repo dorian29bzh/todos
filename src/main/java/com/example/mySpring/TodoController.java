@@ -1,8 +1,8 @@
 package com.example.mySpring;
 
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -10,14 +10,22 @@ import java.util.List;
 @RestController
 public class TodoController {
 
+    @Autowired
+    private TodoService todoService;
+
     @RequestMapping("/todos")
     public List<Todo> getAllTodos(){
-        return Arrays.asList(
-                new Todo(1,"numero 1",false),
-                new Todo(2,"numero 2",false),
-                new Todo(3,"numero 3",false)
+        return todoService.getAllTodo();
+    }
 
+    @RequestMapping("/todos/{id}")
+    public Todo getTodo(@PathVariable int id){
+        return todoService.getTodo(id);
+    }
 
-        );
+    @RequestMapping(method = RequestMethod.POST, value = "/todos")
+    public void addTodo(@RequestBody Todo todo){
+        todoService.addTodo(todo);
+
     }
 }
