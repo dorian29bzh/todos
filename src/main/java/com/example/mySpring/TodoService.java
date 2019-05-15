@@ -34,4 +34,21 @@ public class TodoService {
        todoList.add(todo);
 
     }
+
+    public void updateTodo(int id, Todo todo) {
+       for (Todo t : todoList){
+           if (t.getId() == id){
+               todoList.set(id-1, todo);
+               return;
+           }
+       }
+    }
+
+    public void deleteTodo(int id) {
+       for (Todo t : todoList){
+           if (t.getId() == id){
+               todoList.remove(id);
+           }
+       }
+    }
 }
